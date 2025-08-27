@@ -1,24 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>timelec-machine-guard</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMELEC - Machine Maintenance Management System</title>
+    <meta name="description" content="Professional machine maintenance tracking system for TIMELEC. Monitor, schedule, and track all equipment maintenance efficiently.">
+    <meta name="author" content="TIMELEC">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="machine maintenance, equipment tracking, industrial maintenance, TIMELEC, maintenance management">
+    <meta property="og:title" content="TIMELEC - Machine Maintenance Management">
+    <meta property="og:description" content="Professional machine maintenance tracking system for industrial equipment">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>TIMELEC</h1>
+                        <p>Maintenance System</p>
+                    </div>
+                </div>
+                
+                <div class="nav-items">
+                    <a href="#/" class="nav-item active" data-page="dashboard">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#/machines" class="nav-item" data-page="machines">
+                        <i data-lucide="settings"></i>
+                        <span>Machines</span>
+                    </a>
+                    <a href="#/maintenance" class="nav-item" data-page="maintenance">
+                        <i data-lucide="wrench"></i>
+                        <span>Maintenance</span>
+                    </a>
+                    <a href="#/schedule" class="nav-item" data-page="schedule">
+                        <i data-lucide="calendar"></i>
+                        <span>Schedule</span>
+                    </a>
+                    <a href="#/technicians" class="nav-item" data-page="technicians">
+                        <i data-lucide="users"></i>
+                        <span>Technicians</span>
+                    </a>
+                    <a href="#/reports" class="nav-item" data-page="reports">
+                        <i data-lucide="bar-chart-3"></i>
+                        <span>Reports</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
 
-    <meta property="og:title" content="timelec-machine-guard" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div id="page-content">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </main>
+    </div>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
 </html>
