@@ -3,7 +3,12 @@
 class TimelecApp {
     constructor() {
         this.currentPage = 'dashboard';
-        this.init();
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            this.init();
+        }
     }
 
     init() {
@@ -568,7 +573,5 @@ class TimelecApp {
     }
 }
 
-// Initialize the application when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new TimelecApp();
-});
+// Initialize the app
+const app = new TimelecApp();
