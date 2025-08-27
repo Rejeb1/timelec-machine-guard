@@ -257,10 +257,43 @@ class TimelecApp {
 
     renderMachines() {
         const machines = [
-            { id: "M001", name: "CNC Milling Machine #7", status: "Running", location: "Floor A-1", lastMaintenance: "2024-01-15", nextMaintenance: "2024-02-15" },
-            { id: "M002", name: "Industrial Robot #3", status: "Maintenance", location: "Floor B-2", lastMaintenance: "2024-01-10", nextMaintenance: "2024-02-10" },
-            { id: "M003", name: "Conveyor Belt System A", status: "Running", location: "Floor A-3", lastMaintenance: "2024-01-20", nextMaintenance: "2024-02-20" },
-            { id: "M004", name: "Hydraulic Press #12", status: "Critical", location: "Floor C-1", lastMaintenance: "2024-01-05", nextMaintenance: "2024-02-05" },
+            { id: ".0001111", name: "GABARIT COULISSEAUX", status: "ES", location: "Production", lastMaintenance: "2024-01-15", nextMaintenance: "2024-02-15" },
+            { id: "297SO0303B", name: "GABARIT COULISSEAUX", status: "REBUS", location: "Production", lastMaintenance: "2024-01-10", nextMaintenance: "N/A" },
+            { id: "N/A", name: "GABARIT ASSEMBLAGE CONTACT", status: "ES", location: "Assembly", lastMaintenance: "2024-01-20", nextMaintenance: "2024-02-20" },
+            { id: ".094500107", name: "GABARIT MONTAGE BARREAU B3", status: "ES", location: "Assembly", lastMaintenance: "2024-01-18", nextMaintenance: "2024-02-18" },
+            { id: "N/A", name: "GABARIT D'ASSEMBLAGE BARREAUX VM1", status: "ES", location: "Assembly", lastMaintenance: "2024-01-12", nextMaintenance: "2024-02-12" },
+            { id: "2031879/01", name: "MACHINE SAFIR 130 T", status: "ES", location: "Production", lastMaintenance: "2024-01-08", nextMaintenance: "2024-02-08" },
+            { id: "N/A", name: "GABARIT POSAGE", status: "ES", location: "Assembly", lastMaintenance: "2024-01-25", nextMaintenance: "2024-02-25" },
+            { id: "02C05180401", name: "IMPRIMANTE ZEBRA DIRIS A20", status: "REBUS", location: "Office", lastMaintenance: "2023-12-20", nextMaintenance: "N/A" },
+            { id: "02c05180401", name: "IMPRIMANTE Z4M MAGASIN", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-12-15", nextMaintenance: "N/A" },
+            { id: "N/A", name: "IMPRIMANTE ZEBRA XI MAGASIN", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-11-30", nextMaintenance: "N/A" },
+            { id: "9092035", name: "IMPRIMANTE ZEBRA 110 Xi III plus", status: "REBUS", location: "Office", lastMaintenance: "2023-11-25", nextMaintenance: "N/A" },
+            { id: "38700351", name: "IMPRIMANATE RICOH METHODE", status: "ES", location: "Office", lastMaintenance: "2024-01-22", nextMaintenance: "2024-02-22" },
+            { id: "NLRB040530", name: "IMPRIMANTE HP 8000", status: "REBUS", location: "Office", lastMaintenance: "2023-12-10", nextMaintenance: "N/A" },
+            { id: "NLEV087529", name: "IMPRIMANTE HP 4000 MAG", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-12-05", nextMaintenance: "N/A" },
+            { id: "3354786", name: "IMPRIMANTE ZEBRA MAGASIN", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-11-20", nextMaintenance: "N/A" },
+            { id: "K2349500051", name: "IMPRIMANTE RICOH COMPTABILITE", status: "REBUS", location: "Accounting", lastMaintenance: "2023-11-15", nextMaintenance: "N/A" },
+            { id: "49421676", name: "RICOH FAX COMPTABILITE", status: "ES", location: "Accounting", lastMaintenance: "2024-01-19", nextMaintenance: "2024-02-19" },
+            { id: "6 XGJ751", name: "IMPRIMANTE DELL DIRECTEUR", status: "REBUS", location: "Management", lastMaintenance: "2023-12-01", nextMaintenance: "N/A" },
+            { id: "CNBW82308F", name: "IMPRIMANTE HP GRH", status: "ES", location: "HR", lastMaintenance: "2024-01-16", nextMaintenance: "2024-02-16" },
+            { id: "N/A", name: "IMPRIMANTE RICOH LOGISTIQUE", status: "ES", location: "Logistics", lastMaintenance: "2024-01-14", nextMaintenance: "2024-02-14" },
+            { id: "325SO0307", name: "GABARIT MONTAGE BARREAU VM1", status: "ES", location: "Assembly", lastMaintenance: "2024-01-11", nextMaintenance: "2024-02-11" },
+            { id: "N/A", name: "GABARIT MONTAGE CAGE DE COUPURE VM1", status: "ES", location: "Assembly", lastMaintenance: "2024-01-09", nextMaintenance: "2024-02-09" },
+            { id: "N/A", name: "Outil de manœuvre", status: "ES", location: "Tools", lastMaintenance: "2024-01-07", nextMaintenance: "2024-02-07" },
+            { id: "9715025", name: "GABARIT MONTAGE BARREAU VM2", status: "ES", location: "Assembly", lastMaintenance: "2024-01-06", nextMaintenance: "2024-02-06" },
+            { id: "336SO0308", name: "GABARIT MONTAGE CAGE DE COMMANDE VM2", status: "ES", location: "Assembly", lastMaintenance: "2024-01-05", nextMaintenance: "2024-02-05" },
+            { id: "N/A", name: "GABARIT CLIPSAGE CAPOT VM1/VM2", status: "ES", location: "Assembly", lastMaintenance: "2024-01-04", nextMaintenance: "2024-02-04" },
+            { id: "84368", name: "Perceuse colonne d'établi CINCINATI PE 15", status: "ES", location: "Workshop", lastMaintenance: "2024-01-03", nextMaintenance: "2024-02-03" },
+            { id: "S-705.1/0831", name: "PRESSE A PASTILLER + BOITIER DE COMMANDE", status: "ES", location: "Production", lastMaintenance: "2024-01-02", nextMaintenance: "2024-02-02" },
+            { id: "S-705.1/0942", name: "PRESSE A PASTILLER + BOITIER DE COMMANDE", status: "ES", location: "Production", lastMaintenance: "2024-01-01", nextMaintenance: "2024-02-01" },
+            { id: "FATS 51049", name: "MACHINE FILL AIR", status: "REBUS", location: "Production", lastMaintenance: "2023-10-15", nextMaintenance: "N/A" },
+            { id: "N/A", name: "PRESSE A SERTIR 4,3T", status: "ES", location: "Production", lastMaintenance: "2023-12-30", nextMaintenance: "2024-01-30" },
+            { id: "N/A", name: "PRESSE A SERTIR 4,3T", status: "ES", location: "Production", lastMaintenance: "2023-12-29", nextMaintenance: "2024-01-29" },
+            { id: "N/A", name: "PRESSE A SERTIR 3T", status: "ES", location: "Production", lastMaintenance: "2023-12-28", nextMaintenance: "2024-01-28" },
+            { id: "423SO0503", name: "GABARIT MONTAGE BARREAU B5", status: "ES", location: "Assembly", lastMaintenance: "2023-12-27", nextMaintenance: "2024-01-27" },
+            { id: "N/A", name: "GABARIT DE MONTAGE INSERT A20 & A40", status: "ES", location: "Assembly", lastMaintenance: "2023-12-26", nextMaintenance: "2024-01-26" },
+            { id: "N/A", name: "GABARIT D'ASSEMBLAGE DIRIS A20", status: "ES", location: "Assembly", lastMaintenance: "2023-12-25", nextMaintenance: "2024-01-25" },
+            { id: "N/A", name: "FER A SOUDER", status: "ES", location: "Workshop", lastMaintenance: "2023-12-24", nextMaintenance: "2024-01-24" }
         ];
 
         return `
@@ -556,17 +589,19 @@ class TimelecApp {
 
     getStatusColor(status) {
         switch (status.toLowerCase()) {
+            case 'es':
             case 'running':
             case 'available':
             case 'completed':
                 return 'success';
+            case 'rebus':
+            case 'critical':
+            case 'off duty':
+                return 'destructive';
             case 'maintenance':
             case 'busy':
             case 'pending':
                 return 'warning';
-            case 'critical':
-            case 'off duty':
-                return 'destructive';
             default:
                 return 'primary';
         }
