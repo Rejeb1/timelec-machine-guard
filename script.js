@@ -73,8 +73,8 @@ class TimelecApp {
             case 'dashboard':
                 content.innerHTML = this.renderDashboard();
                 break;
-            case 'machines':
-                content.innerHTML = this.renderMachines();
+            case 'equipements':
+                content.innerHTML = this.renderEquipements();
                 break;
             case 'maintenance':
                 content.innerHTML = this.renderMaintenance();
@@ -113,7 +113,7 @@ class TimelecApp {
                         <div class="hero-buttons">
                             <button class="btn btn-secondary btn-lg">
                                 <i data-lucide="plus"></i>
-                                Add Machine
+                                Add Equipement
                             </button>
                             <button class="btn btn-accent btn-lg">
                                 <i data-lucide="calendar"></i>
@@ -126,8 +126,8 @@ class TimelecApp {
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                     ${this.renderDashboardCard({
-                        title: "Total Machines",
-                        value: 156,
+                        title: "Total Equipements",
+                        value: 756,
                         subtitle: "Active equipment",
                         icon: "settings",
                         variant: "primary",
@@ -255,54 +255,105 @@ class TimelecApp {
         `).join('');
     }
 
-    renderMachines() {
-        const machines = [
-            { id: ".0001111", name: "GABARIT COULISSEAUX", status: "ES", location: "Production", lastMaintenance: "2024-01-15", nextMaintenance: "2024-02-15" },
-            { id: "297SO0303B", name: "GABARIT COULISSEAUX", status: "REBUS", location: "Production", lastMaintenance: "2024-01-10", nextMaintenance: "N/A" },
-            { id: "N/A", name: "GABARIT ASSEMBLAGE CONTACT", status: "ES", location: "Assembly", lastMaintenance: "2024-01-20", nextMaintenance: "2024-02-20" },
-            { id: ".094500107", name: "GABARIT MONTAGE BARREAU B3", status: "ES", location: "Assembly", lastMaintenance: "2024-01-18", nextMaintenance: "2024-02-18" },
-            { id: "N/A", name: "GABARIT D'ASSEMBLAGE BARREAUX VM1", status: "ES", location: "Assembly", lastMaintenance: "2024-01-12", nextMaintenance: "2024-02-12" },
-            { id: "2031879/01", name: "MACHINE SAFIR 130 T", status: "ES", location: "Production", lastMaintenance: "2024-01-08", nextMaintenance: "2024-02-08" },
-            { id: "N/A", name: "GABARIT POSAGE", status: "ES", location: "Assembly", lastMaintenance: "2024-01-25", nextMaintenance: "2024-02-25" },
-            { id: "02C05180401", name: "IMPRIMANTE ZEBRA DIRIS A20", status: "REBUS", location: "Office", lastMaintenance: "2023-12-20", nextMaintenance: "N/A" },
-            { id: "02c05180401", name: "IMPRIMANTE Z4M MAGASIN", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-12-15", nextMaintenance: "N/A" },
-            { id: "N/A", name: "IMPRIMANTE ZEBRA XI MAGASIN", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-11-30", nextMaintenance: "N/A" },
-            { id: "9092035", name: "IMPRIMANTE ZEBRA 110 Xi III plus", status: "REBUS", location: "Office", lastMaintenance: "2023-11-25", nextMaintenance: "N/A" },
-            { id: "38700351", name: "IMPRIMANATE RICOH METHODE", status: "ES", location: "Office", lastMaintenance: "2024-01-22", nextMaintenance: "2024-02-22" },
-            { id: "NLRB040530", name: "IMPRIMANTE HP 8000", status: "REBUS", location: "Office", lastMaintenance: "2023-12-10", nextMaintenance: "N/A" },
-            { id: "NLEV087529", name: "IMPRIMANTE HP 4000 MAG", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-12-05", nextMaintenance: "N/A" },
-            { id: "3354786", name: "IMPRIMANTE ZEBRA MAGASIN", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-11-20", nextMaintenance: "N/A" },
-            { id: "K2349500051", name: "IMPRIMANTE RICOH COMPTABILITE", status: "REBUS", location: "Accounting", lastMaintenance: "2023-11-15", nextMaintenance: "N/A" },
-            { id: "49421676", name: "RICOH FAX COMPTABILITE", status: "ES", location: "Accounting", lastMaintenance: "2024-01-19", nextMaintenance: "2024-02-19" },
-            { id: "6 XGJ751", name: "IMPRIMANTE DELL DIRECTEUR", status: "REBUS", location: "Management", lastMaintenance: "2023-12-01", nextMaintenance: "N/A" },
-            { id: "CNBW82308F", name: "IMPRIMANTE HP GRH", status: "ES", location: "HR", lastMaintenance: "2024-01-16", nextMaintenance: "2024-02-16" },
-            { id: "N/A", name: "IMPRIMANTE RICOH LOGISTIQUE", status: "ES", location: "Logistics", lastMaintenance: "2024-01-14", nextMaintenance: "2024-02-14" },
-            { id: "325SO0307", name: "GABARIT MONTAGE BARREAU VM1", status: "ES", location: "Assembly", lastMaintenance: "2024-01-11", nextMaintenance: "2024-02-11" },
-            { id: "N/A", name: "GABARIT MONTAGE CAGE DE COUPURE VM1", status: "ES", location: "Assembly", lastMaintenance: "2024-01-09", nextMaintenance: "2024-02-09" },
-            { id: "N/A", name: "Outil de manœuvre", status: "ES", location: "Tools", lastMaintenance: "2024-01-07", nextMaintenance: "2024-02-07" },
-            { id: "9715025", name: "GABARIT MONTAGE BARREAU VM2", status: "ES", location: "Assembly", lastMaintenance: "2024-01-06", nextMaintenance: "2024-02-06" },
-            { id: "336SO0308", name: "GABARIT MONTAGE CAGE DE COMMANDE VM2", status: "ES", location: "Assembly", lastMaintenance: "2024-01-05", nextMaintenance: "2024-02-05" },
-            { id: "N/A", name: "GABARIT CLIPSAGE CAPOT VM1/VM2", status: "ES", location: "Assembly", lastMaintenance: "2024-01-04", nextMaintenance: "2024-02-04" },
-            { id: "84368", name: "Perceuse colonne d'établi CINCINATI PE 15", status: "ES", location: "Workshop", lastMaintenance: "2024-01-03", nextMaintenance: "2024-02-03" },
-            { id: "S-705.1/0831", name: "PRESSE A PASTILLER + BOITIER DE COMMANDE", status: "ES", location: "Production", lastMaintenance: "2024-01-02", nextMaintenance: "2024-02-02" },
-            { id: "S-705.1/0942", name: "PRESSE A PASTILLER + BOITIER DE COMMANDE", status: "ES", location: "Production", lastMaintenance: "2024-01-01", nextMaintenance: "2024-02-01" },
-            { id: "FATS 51049", name: "MACHINE FILL AIR", status: "REBUS", location: "Production", lastMaintenance: "2023-10-15", nextMaintenance: "N/A" },
-            { id: "N/A", name: "PRESSE A SERTIR 4,3T", status: "ES", location: "Production", lastMaintenance: "2023-12-30", nextMaintenance: "2024-01-30" },
-            { id: "N/A", name: "PRESSE A SERTIR 4,3T", status: "ES", location: "Production", lastMaintenance: "2023-12-29", nextMaintenance: "2024-01-29" },
-            { id: "N/A", name: "PRESSE A SERTIR 3T", status: "ES", location: "Production", lastMaintenance: "2023-12-28", nextMaintenance: "2024-01-28" },
-            { id: "423SO0503", name: "GABARIT MONTAGE BARREAU B5", status: "ES", location: "Assembly", lastMaintenance: "2023-12-27", nextMaintenance: "2024-01-27" },
-            { id: "N/A", name: "GABARIT DE MONTAGE INSERT A20 & A40", status: "ES", location: "Assembly", lastMaintenance: "2023-12-26", nextMaintenance: "2024-01-26" },
-            { id: "N/A", name: "GABARIT D'ASSEMBLAGE DIRIS A20", status: "ES", location: "Assembly", lastMaintenance: "2023-12-25", nextMaintenance: "2024-01-25" },
-            { id: "N/A", name: "FER A SOUDER", status: "ES", location: "Workshop", lastMaintenance: "2023-12-24", nextMaintenance: "2024-01-24" }
+    renderEquipements() {
+        const equipements = [
+            // PC Equipment
+            { id: "15232", name: "PC postes de contrôle 100% P87", status: "ES", location: "Production", lastMaintenance: "2024-01-15", nextMaintenance: "2024-02-15" },
+            { id: "15243", name: "PC postes de contrôle 100% A20", status: "ES", location: "Production", lastMaintenance: "2024-01-10", nextMaintenance: "2024-02-10" },
+            { id: "15499", name: "PC postes de contrôle 100% A40", status: "ES", location: "Production", lastMaintenance: "2024-01-20", nextMaintenance: "2024-02-20" },
+            { id: "15561", name: "PC postes de contrôle 100% SDMO", status: "ES", location: "Production", lastMaintenance: "2024-01-18", nextMaintenance: "2024-02-18" },
+            { id: "15570", name: "PC postes de contrôle 100% BET", status: "ES", location: "Production", lastMaintenance: "2024-01-12", nextMaintenance: "2024-02-12" },
+            { id: "15628", name: "PC postes de contrôle 100% ATYS-M", status: "ES", location: "Production", lastMaintenance: "2024-01-08", nextMaintenance: "2024-02-08" },
+            { id: "16122", name: "PC postes de contrôle 100%", status: "ES", location: "Production", lastMaintenance: "2024-01-25", nextMaintenance: "2024-02-25" },
+            { id: "17283", name: "PC  S/E 100%", status: "ES", location: "Production", lastMaintenance: "2024-01-22", nextMaintenance: "2024-02-22" },
+            { id: "17284", name: "PC 100% B4", status: "ES", location: "Production", lastMaintenance: "2024-01-19", nextMaintenance: "2024-02-19" },
+            { id: "17286", name: "PC  S/E 100%", status: "ES", location: "Production", lastMaintenance: "2024-01-16", nextMaintenance: "2024-02-16" },
+            { id: "17294", name: "PC postes de contrôle 100%", status: "ES", location: "Production", lastMaintenance: "2024-01-14", nextMaintenance: "2024-02-14" },
+            { id: "17297", name: "PC 100%", status: "ES", location: "Production", lastMaintenance: "2024-01-11", nextMaintenance: "2024-02-11" },
+            { id: "17395", name: "PC postes", status: "ES", location: "Production", lastMaintenance: "2024-01-09", nextMaintenance: "2024-02-09" },
+            { id: "17656", name: "PC poste", status: "ES", location: "Production", lastMaintenance: "2024-01-07", nextMaintenance: "2024-02-07" },
+            { id: "18473", name: "PC  B4", status: "ES", location: "Production", lastMaintenance: "2024-01-06", nextMaintenance: "2024-02-06" },
+            { id: "18573", name: "PC postes de contrôle 100% BEL", status: "ES", location: "Production", lastMaintenance: "2024-01-05", nextMaintenance: "2024-02-05" },
+            { id: "18579", name: "PC", status: "ES", location: "Production", lastMaintenance: "2024-01-04", nextMaintenance: "2024-02-04" },
+            { id: "18580", name: "PC postes de contrôle 100% FUSERBLOC", status: "ES", location: "Production", lastMaintenance: "2024-01-03", nextMaintenance: "2024-02-03" },
+            { id: "18583", name: "PC postes de contrôle 100%", status: "ES", location: "Production", lastMaintenance: "2024-01-02", nextMaintenance: "2024-02-02" },
+            { id: "18585", name: "PC postes de contrôle 100%", status: "ES", location: "Production", lastMaintenance: "2024-01-01", nextMaintenance: "2024-02-01" },
+            { id: "19135", name: "PC postes", status: "ES", location: "Production", lastMaintenance: "2023-12-30", nextMaintenance: "2024-01-30" },
+            { id: "19904", name: "PC  S/E 100%", status: "ES", location: "Production", lastMaintenance: "2023-12-29", nextMaintenance: "2024-01-29" },
+            { id: "25477", name: "PC poste", status: "ES", location: "Production", lastMaintenance: "2023-12-28", nextMaintenance: "2024-01-28" },
+            { id: "25488", name: "PC poste", status: "ES", location: "Production", lastMaintenance: "2023-12-27", nextMaintenance: "2024-01-27" },
+            { id: "26261", name: "PC postes", status: "ES", location: "Production", lastMaintenance: "2023-12-26", nextMaintenance: "2024-01-26" },
+            { id: "41350", name: "PC postes de contrôle 100% SIRCO MV", status: "ES", location: "Production", lastMaintenance: "2023-12-25", nextMaintenance: "2024-01-25" },
+            { id: "45080", name: "PC  B4", status: "ES", location: "Production", lastMaintenance: "2023-12-24", nextMaintenance: "2024-01-24" },
+            { id: "45082", name: "PC postes de contrôle", status: "ES", location: "Production", lastMaintenance: "2023-12-23", nextMaintenance: "2024-01-23" },
+            { id: "45083", name: "PC postes", status: "ES", location: "Production", lastMaintenance: "2023-12-22", nextMaintenance: "2024-01-22" },
+            { id: "45084", name: "PC", status: "ES", location: "Production", lastMaintenance: "2023-12-21", nextMaintenance: "2024-01-21" },
+            { id: "45087", name: "PC  S/E 100%", status: "ES", location: "Production", lastMaintenance: "2023-12-20", nextMaintenance: "2024-01-20" },
+            { id: "45240", name: "PC  S/E 100%", status: "ES", location: "Production", lastMaintenance: "2023-12-19", nextMaintenance: "2024-01-19" },
+            { id: "45249", name: "PC POIGNEE", status: "ES", location: "Production", lastMaintenance: "2023-12-18", nextMaintenance: "2024-01-18" },
+            
+            // A-Series Equipment
+            { id: "A-0003", name: "GABARIT COULISSEAUX", status: "ES", location: "Assembly", lastMaintenance: "2023-12-17", nextMaintenance: "2024-01-17" },
+            { id: "A-0004", name: "GABARIT COULISSEAUX", status: "ES", location: "Assembly", lastMaintenance: "2023-12-16", nextMaintenance: "2024-01-16" },
+            { id: "A-0010/01", name: "GABARIT ASSEMBLAGE CONTACT", status: "ES", location: "Assembly", lastMaintenance: "2023-12-15", nextMaintenance: "2024-01-15" },
+            { id: "A-0024", name: "GABARIT MONTAGE BARREAU B3", status: "ES", location: "Assembly", lastMaintenance: "2023-12-14", nextMaintenance: "2024-01-14" },
+            { id: "A-0027/02", name: "GABARIT D'ASSEMBLAGE BARREAUX VM1", status: "ES", location: "Assembly", lastMaintenance: "2023-12-13", nextMaintenance: "2024-01-13" },
+            { id: "A-0033", name: "MACHINE SAFIR 130 T", status: "ES", location: "Production", lastMaintenance: "2023-12-12", nextMaintenance: "2024-01-12" },
+            { id: "A-0038", name: "GABARIT POSAGE", status: "ES", location: "Assembly", lastMaintenance: "2023-12-11", nextMaintenance: "2024-01-11" },
+            { id: "A-0041/06", name: "IMPRIMANTE ZEBRA  DIRIS A20", status: "ES", location: "Office", lastMaintenance: "2023-12-10", nextMaintenance: "2024-01-10" },
+            { id: "A-0041/08", name: "IMPRIMANTE Z4M MAGASIN", status: "ES", location: "Warehouse", lastMaintenance: "2023-12-09", nextMaintenance: "2024-01-09" },
+            { id: "A-0041/09", name: "IMPRIMANTE ZEBRA XI MAGASIN", status: "ES", location: "Warehouse", lastMaintenance: "2023-12-08", nextMaintenance: "2024-01-08" },
+            { id: "A-0041/10", name: "IMPRIMANTE ZEBRA 110 Xi III plus", status: "ES", location: "Office", lastMaintenance: "2023-12-07", nextMaintenance: "2024-01-07" },
+            { id: "A-0041/12", name: "IMPRIMANATE RICOH METHODE", status: "ES", location: "Office", lastMaintenance: "2023-12-06", nextMaintenance: "2024-01-06" },
+            { id: "A-0041/13", name: "IMPRIMANTE HP 8000", status: "ES", location: "Office", lastMaintenance: "2023-12-05", nextMaintenance: "2024-01-05" },
+            { id: "A-0041/14", name: "IMPRIMANTE HP 4000 MAG", status: "ES", location: "Warehouse", lastMaintenance: "2023-12-04", nextMaintenance: "2024-01-04" },
+            { id: "A-0041/15", name: "IMPRIMANTE ZEBRA MAGASIN", status: "ES", location: "Warehouse", lastMaintenance: "2023-12-03", nextMaintenance: "2024-01-03" },
+            { id: "A-0041/16", name: "IMPRIMANTE RICOH COMPTABILITE", status: "ES", location: "Accounting", lastMaintenance: "2023-12-02", nextMaintenance: "2024-01-02" },
+            { id: "A-0041/17", name: "RICOH FAX COMPTABILITE", status: "ES", location: "Accounting", lastMaintenance: "2023-12-01", nextMaintenance: "2024-01-01" },
+            { id: "A-0041/18", name: "IMPRIMANTE DELL DIRECTEUR", status: "ES", location: "Management", lastMaintenance: "2023-11-30", nextMaintenance: "2023-12-30" },
+            { id: "A-0041/19", name: "IMPRIMANTE HP GRH", status: "ES", location: "HR", lastMaintenance: "2023-11-29", nextMaintenance: "2023-12-29" },
+            { id: "A-0041/20", name: "IMPRIMANTE RICOH LOGISTIQUE", status: "ES", location: "Logistics", lastMaintenance: "2023-11-28", nextMaintenance: "2023-12-28" },
+            { id: "A-0044", name: "GABARIT MONTAGE BARREAU VM1", status: "ES", location: "Assembly", lastMaintenance: "2023-11-27", nextMaintenance: "2023-12-27" },
+            { id: "A-0045", name: "GABARIT MONTAGE CAGE DE COUPURE VM1", status: "ES", location: "Assembly", lastMaintenance: "2023-11-26", nextMaintenance: "2023-12-26" },
+            { id: "A-0049", name: "Outil de manœuvre", status: "ES", location: "Tools", lastMaintenance: "2023-11-25", nextMaintenance: "2023-12-25" },
+            { id: "A-0050", name: "GABARIT MONTAGE BARREAU VM2", status: "ES", location: "Assembly", lastMaintenance: "2023-11-24", nextMaintenance: "2023-12-24" },
+            { id: "A-0052", name: "GABARIT MONTAGE CAGE DE COMMANDE VM2", status: "ES", location: "Assembly", lastMaintenance: "2023-11-23", nextMaintenance: "2023-12-23" },
+            { id: "A-0058", name: "GABARIT CLIPSAGE CAPOT VM1/VM2", status: "ES", location: "Assembly", lastMaintenance: "2023-11-22", nextMaintenance: "2023-12-22" },
+            { id: "A-0064", name: "Perceuse colonne d'établi CINCINATI PE 15", status: "ES", location: "Workshop", lastMaintenance: "2023-11-21", nextMaintenance: "2023-12-21" },
+            { id: "A-0069/01", name: "PRESSE A PASTILLER + BOITIER DE COMMANDE", status: "ES", location: "Production", lastMaintenance: "2023-11-20", nextMaintenance: "2023-12-20" },
+            { id: "A-0069/02", name: "PRESSE A PASTILLER + BOITIER DE COMMANDE", status: "ES", location: "Production", lastMaintenance: "2023-11-19", nextMaintenance: "2023-12-19" },
+            { id: "A-0085", name: "MACHINE FILL AIR", status: "REBUS", location: "Production", lastMaintenance: "2023-11-18", nextMaintenance: "N/A" },
+            { id: "A-0088", name: "GABARIT ASSEMBLAGE CONTACT", status: "ES", location: "Assembly", lastMaintenance: "2023-11-17", nextMaintenance: "2023-12-17" },
+            { id: "A-0090/01", name: "PRESSE A SERTIR 4,3T", status: "ES", location: "Production", lastMaintenance: "2023-11-16", nextMaintenance: "2023-12-16" },
+            { id: "A-0090/02", name: "PRESSE A SERTIR 4,3T", status: "ES", location: "Production", lastMaintenance: "2023-11-15", nextMaintenance: "2023-12-15" },
+            { id: "A-0090/03", name: "PRESSE A SERTIR 3T", status: "ES", location: "Production", lastMaintenance: "2023-11-14", nextMaintenance: "2023-12-14" },
+            { id: "A-0098", name: "GABARIT MONTAGE BARREAU B5", status: "ES", location: "Assembly", lastMaintenance: "2023-11-13", nextMaintenance: "2023-12-13" },
+            { id: "A-0121", name: "GABARIT DE MONTAGE INSERT A20 & A40", status: "ES", location: "Assembly", lastMaintenance: "2023-11-12", nextMaintenance: "2023-12-12" },
+            { id: "A-0123", name: "GABARIT D'ASSEMBLAGE DIRIS A20", status: "ES", location: "Assembly", lastMaintenance: "2023-11-11", nextMaintenance: "2023-12-11" },
+            { id: "A-0131/10", name: "FER A SOUDER", status: "ES", location: "Workshop", lastMaintenance: "2023-11-10", nextMaintenance: "2023-12-10" },
+            { id: "A-0131/11", name: "FER A SOUDER", status: "ES", location: "Workshop", lastMaintenance: "2023-11-09", nextMaintenance: "2023-12-09" },
+            { id: "A-0131/12", name: "FER A SOUDER", status: "ES", location: "Workshop", lastMaintenance: "2023-11-08", nextMaintenance: "2023-12-08" },
+            { id: "A-0131/13", name: "FER A SOUDER", status: "ES", location: "Workshop", lastMaintenance: "2023-11-07", nextMaintenance: "2023-12-07" },
+            { id: "A-0131/14", name: "FER A SOUDER", status: "ES", location: "Workshop", lastMaintenance: "2023-11-06", nextMaintenance: "2023-12-06" },
+            { id: "A-0133/01", name: "TESTEUR DIELECTRIQUE DIRIS A20", status: "ES", location: "Testing", lastMaintenance: "2023-11-05", nextMaintenance: "2023-12-05" },
+            { id: "A-0134", name: "BANC D'ENDURACE MECANIQUE 1", status: "ES", location: "Testing", lastMaintenance: "2023-11-04", nextMaintenance: "2023-12-04" },
+            
+            // Additional sample entries for demonstration (the full list would be too long for this example)
+            { id: "G-0002", name: "GERBEUR 1000 FAC", status: "ES", location: "Warehouse", lastMaintenance: "2023-10-15", nextMaintenance: "2023-11-15" },
+            { id: "M-0001/01", name: "VISSEUSE PNEUMATIQUE", status: "ES", location: "Workshop", lastMaintenance: "2023-10-10", nextMaintenance: "2023-11-10" },
+            { id: "K-0024", name: "Groupe glacee carrier", status: "ES", location: "Utilities", lastMaintenance: "2023-10-05", nextMaintenance: "2023-11-05" },
+            { id: "F-3253", name: "MOULE 515428 /515429", status: "ES", location: "Production", lastMaintenance: "2023-10-01", nextMaintenance: "2023-11-01" },
+            { id: "D-0003", name: "PRESSE D' INJECTION KM01", status: "ES", location: "Production", lastMaintenance: "2023-09-25", nextMaintenance: "2023-10-25" },
+            { id: "B-0001", name: "END-04 BANC D'ENDURANCE SIRCO/SIRCOVER /FUSERBLOC/VM/MV", status: "ES", location: "Testing", lastMaintenance: "2023-09-20", nextMaintenance: "2023-10-20" }
         ];
 
         return `
             <div class="space-y-6">
                 <div class="flex items-center justify-between">
-                    <h1 class="text-3xl font-bold">Machines</h1>
+                    <h1 class="text-3xl font-bold">Equipements</h1>
                     <button class="btn btn-primary">
                         <i data-lucide="plus"></i>
-                        Add Machine
+                        Add Equipement
                     </button>
                 </div>
 
@@ -310,7 +361,7 @@ class TimelecApp {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Machine ID</th>
+                                <th>Equipement ID</th>
                                 <th>Name</th>
                                 <th>Status</th>
                                 <th>Location</th>
@@ -320,18 +371,18 @@ class TimelecApp {
                             </tr>
                         </thead>
                         <tbody>
-                            ${machines.map(machine => `
+                            ${equipements.map(equipement => `
                                 <tr>
-                                    <td class="font-medium">${machine.id}</td>
-                                    <td>${machine.name}</td>
+                                    <td class="font-medium">${equipement.id}</td>
+                                    <td>${equipement.name}</td>
                                     <td>
-                                        <span class="badge badge-${this.getStatusColor(machine.status)}">
-                                            ${machine.status}
+                                        <span class="badge badge-${this.getStatusColor(equipement.status)}">
+                                            ${equipement.status}
                                         </span>
                                     </td>
-                                    <td>${machine.location}</td>
-                                    <td>${machine.lastMaintenance}</td>
-                                    <td>${machine.nextMaintenance}</td>
+                                    <td>${equipement.location}</td>
+                                    <td>${equipement.lastMaintenance}</td>
+                                    <td>${equipement.nextMaintenance}</td>
                                     <td>
                                         <button class="btn btn-outline btn-sm">
                                             <i data-lucide="eye"></i>
