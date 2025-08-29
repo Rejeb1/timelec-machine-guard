@@ -256,18 +256,18 @@ class TimelecApp {
     }
 
     renderEquipements() {
-        const equipements = [
+        this.equipements = [
             { id: "15232", name: "PC postes de contrôle 100% P87", status: "ES", location: "Production", lastMaintenance: "2024-01-15", nextMaintenance: "2024-02-15" },
             { id: "15243", name: "PC postes de contrôle 100% A20", status: "ES", location: "Production", lastMaintenance: "2024-01-10", nextMaintenance: "2024-02-10" },
             { id: "15499", name: "PC postes de contrôle 100% A40", status: "ES", location: "Production", lastMaintenance: "2024-01-20", nextMaintenance: "2024-02-20" },
             { id: "A-0003", name: "GABARIT COULISSEAUX", status: "ES", location: "Assembly", lastMaintenance: "2023-12-17", nextMaintenance: "2024-01-17" },
             { id: "A-0033", name: "MACHINE SAFIR 130 T", status: "ES", location: "Workshop", lastMaintenance: "2023-12-15", nextMaintenance: "2024-01-15" },
             { id: "D-0003", name: "PRESSE D' INJECTION KM01", status: "ES", location: "Injection", lastMaintenance: "2023-12-10", nextMaintenance: "2024-01-10" },
-            { id: "G-0002", name: "GERBEUR 1000 FAC", status: "ES", location: "Warehouse", lastMaintenance: "2023-12-05", nextMaintenance: "2024-01-05" },
+            { id: "G-0002", name: "GERBEUR 1000 FAC", status: "REBUS", location: "Warehouse", lastMaintenance: "2023-12-05", nextMaintenance: "2024-01-05" },
             { id: "M-0001/01", name: "VISSEUSE PNEUMATIQUE", status: "ES", location: "Assembly", lastMaintenance: "2023-12-01", nextMaintenance: "2024-01-01" }
         ];
 
-        return `
+        const html = `
             <div class="space-y-6">
                 <div class="flex items-center justify-between">
                     <h1 class="text-3xl font-bold">Equipements</h1>
@@ -275,6 +275,43 @@ class TimelecApp {
                         <i data-lucide="plus"></i>
                         New Equipement
                     </button>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="card card-padding">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Search</label>
+                            <div class="relative">
+                                <input 
+                                    type="text" 
+                                    id="equipment-search" 
+                                    placeholder="Search by ID or name..." 
+                                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                >
+                                <i data-lucide="search" class="absolute left-3 top-2.5 h-4 w-4 text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Location</label>
+                            <select id="location-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">All Locations</option>
+                                <option value="Production">Production</option>
+                                <option value="Assembly">Assembly</option>
+                                <option value="Workshop">Workshop</option>
+                                <option value="Injection">Injection</option>
+                                <option value="Warehouse">Warehouse</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Status</label>
+                            <select id="status-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">All Status</option>
+                                <option value="ES">ES (En Service)</option>
+                                <option value="REBUS">REBUS</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -290,31 +327,76 @@ class TimelecApp {
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            ${equipements.map(equipement => `
-                                <tr>
-                                    <td>${equipement.id}</td>
-                                    <td>${equipement.name}</td>
-                                    <td>
-                                        <span class="badge ${this.getStatusColor(equipement.status)}">
-                                            ${equipement.status}
-                                        </span>
-                                    </td>
-                                    <td>${equipement.location}</td>
-                                    <td>${equipement.lastMaintenance}</td>
-                                    <td>${equipement.nextMaintenance}</td>
-                                    <td>
-                                        <button class="btn btn-outline btn-sm">
-                                            <i data-lucide="eye"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            `).join('')}
+                        <tbody id="equipment-table-body">
+                            ${this.renderEquipmentRows(this.equipements)}
                         </tbody>
                     </table>
                 </div>
             </div>
         `;
+
+        setTimeout(() => {
+            this.initEquipmentFilters();
+        }, 100);
+
+        return html;
+    }
+
+    renderEquipmentRows(equipements) {
+        return equipements.map(equipement => `
+            <tr>
+                <td>${equipement.id}</td>
+                <td>${equipement.name}</td>
+                <td>
+                    <span class="badge ${this.getStatusColor(equipement.status)}">
+                        ${equipement.status}
+                    </span>
+                </td>
+                <td>${equipement.location}</td>
+                <td>${equipement.lastMaintenance}</td>
+                <td>${equipement.nextMaintenance}</td>
+                <td>
+                    <button class="btn btn-outline btn-sm">
+                        <i data-lucide="eye"></i>
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    initEquipmentFilters() {
+        const searchInput = document.getElementById('equipment-search');
+        const locationFilter = document.getElementById('location-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const tableBody = document.getElementById('equipment-table-body');
+
+        if (!searchInput || !locationFilter || !statusFilter || !tableBody) return;
+
+        const filterEquipments = () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedLocation = locationFilter.value;
+            const selectedStatus = statusFilter.value;
+
+            const filtered = this.equipements.filter(equipement => {
+                const matchesSearch = equipement.id.toLowerCase().includes(searchTerm) || 
+                                    equipement.name.toLowerCase().includes(searchTerm);
+                const matchesLocation = !selectedLocation || equipement.location === selectedLocation;
+                const matchesStatus = !selectedStatus || equipement.status === selectedStatus;
+
+                return matchesSearch && matchesLocation && matchesStatus;
+            });
+
+            tableBody.innerHTML = this.renderEquipmentRows(filtered);
+            
+            // Re-initialize icons after content update
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        };
+
+        searchInput.addEventListener('input', filterEquipments);
+        locationFilter.addEventListener('change', filterEquipments);
+        statusFilter.addEventListener('change', filterEquipments);
     }
 
     renderMaintenance() {
