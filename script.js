@@ -278,23 +278,23 @@ class TimelecApp {
                 </div>
 
                 <!-- Search and Filters -->
-                <div class="card card-padding">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="card" style="padding: 1rem;">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <div>
-                            <label class="block text-sm font-medium mb-2">Search</label>
+                            <label class="block text-xs font-medium mb-1">Search</label>
                             <div class="relative">
                                 <input 
                                     type="text" 
                                     id="equipment-search" 
                                     placeholder="Search by ID or name..." 
-                                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    class="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent bg-white"
                                 >
-                                <i data-lucide="search" class="absolute left-3 top-2.5 h-4 w-4 text-gray-400"></i>
+                                <i data-lucide="search" class="absolute left-2.5 top-2 h-3 w-3 text-gray-400"></i>
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium mb-2">Location</label>
-                            <select id="location-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <label class="block text-xs font-medium mb-1">Location</label>
+                            <select id="location-filter" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent bg-white z-10">
                                 <option value="">All Locations</option>
                                 <option value="Production">Production</option>
                                 <option value="Assembly">Assembly</option>
@@ -304,8 +304,8 @@ class TimelecApp {
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium mb-2">Status</label>
-                            <select id="status-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <label class="block text-xs font-medium mb-1">Status</label>
+                            <select id="status-filter" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent bg-white z-10">
                                 <option value="">All Status</option>
                                 <option value="ES">ES (En Service)</option>
                                 <option value="REBUS">REBUS</option>
