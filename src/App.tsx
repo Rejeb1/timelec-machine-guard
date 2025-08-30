@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import Index from "@/pages/Index";
 import Machines from "@/pages/Machines";
 import Maintenance from "@/pages/Maintenance";
+import MaintenanceDashboard from "@/pages/MaintenanceDashboard";
 import Schedule from "@/pages/Schedule";
 import Technicians from "@/pages/Technicians";
 import Reports from "@/pages/Reports";
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/machines" element={<Machines />} />
               <Route path="/maintenance" element={<Maintenance />} />
+              <Route path="/maintenance-dashboard" element={<MaintenanceDashboard />} />
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/technicians" element={<Technicians />} />
               <Route path="/reports" element={<Reports />} />
