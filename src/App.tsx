@@ -4,10 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "@/components/Navigation";
-import Index from "@/pages/Index";
+import Dashboard from "@/pages/Dashboard";
 import Machines from "@/pages/Machines";
 import Maintenance from "@/pages/Maintenance";
-
 import Schedule from "@/pages/Schedule";
 import Technicians from "@/pages/Technicians";
 import Reports from "@/pages/Reports";
@@ -27,7 +26,7 @@ const App = () => (
           </div>
           <main className="flex-1 p-8 overflow-auto">
             <Routes>
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/machines" element={<Machines />} />
               <Route path="/maintenance" element={<Maintenance />} />
               
