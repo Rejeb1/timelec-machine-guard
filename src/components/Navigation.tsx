@@ -29,11 +29,6 @@ const Navigation = () => {
       icon: Wrench
     },
     {
-      path: "/maintenance-dashboard",
-      label: "Pannes 5M",
-      icon: BarChart3
-    },
-    {
       path: "/schedule",
       label: "Schedule",
       icon: Calendar
