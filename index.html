@@ -15,66 +15,9 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-    <div id="app">
-        <!-- Navigation Sidebar -->
-        <nav class="sidebar">
-            <div class="sidebar-content">
-                <div class="logo-section">
-                    <div class="logo-icon">
-                        <i data-lucide="settings"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>TIMELEC</h1>
-                        <p>Maintenance System</p>
-                    </div>
-                </div>
-                
-                <div class="nav-items">
-                    <a href="#/" class="nav-item active" data-page="dashboard">
-                        <i data-lucide="layout-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="#/equipements" class="nav-item" data-page="equipements">
-                        <i data-lucide="settings"></i>
-                        <span>Equipements</span>
-                    </a>
-                    <a href="#/maintenance" class="nav-item" data-page="maintenance">
-                        <i data-lucide="wrench"></i>
-                        <span>Maintenance</span>
-                    </a>
-                    <a href="#/schedule" class="nav-item" data-page="schedule">
-                        <i data-lucide="calendar"></i>
-                        <span>Schedule</span>
-                    </a>
-                    <a href="#/technicians" class="nav-item" data-page="technicians">
-                        <i data-lucide="users"></i>
-                        <span>Technicians</span>
-                    </a>
-                    <a href="#/reports" class="nav-item" data-page="reports">
-                        <i data-lucide="bar-chart-3"></i>
-                        <span>Reports</span>
-                    </a>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <div id="page-content">
-                <!-- Dynamic content will be loaded here -->
-            </div>
-        </main>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
